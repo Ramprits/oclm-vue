@@ -1,6 +1,7 @@
 export default {
   setUser(state, { jwt, user }) {
     state.user = user;
+    state.token = jwt;
     state.isAuthenticated = !!jwt;
     state.errorMessage = "";
   },

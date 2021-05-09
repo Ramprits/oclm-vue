@@ -1,5 +1,6 @@
 import { createStore } from "vuex";
 import UserModule from "./modules/users/index.js";
+import WorkOrderModule from "./modules/work-order/index.js";
 
 export default createStore({
   state: {},
@@ -7,5 +8,6 @@ export default createStore({
   actions: {},
   modules: {
     auth: UserModule,
+    orders: WorkOrderModule,
   },
 });

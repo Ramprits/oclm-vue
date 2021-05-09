@@ -6,7 +6,15 @@ import router from "./router";
 import store from "./store";
 
 axios.defaults.baseURL = process.env.VUE_APP_BACKEND_URL;
-axios.defaults.headers.common["Authorization"] = "";
+axios.interceptors.request.use(function(config) {
+  let publicUrl = ["/auth/local", "/auth/local/register"];
+  if (!publicUrl.includes(config.url)) {
+    const token = store.getters["auth/token"];
+    config.headers.Authorization = `Bearer ${token}`;
+  }
+  return config;
+});
+
 axios.defaults.headers.post["Content-Type"] = "application/json";
 createApp(App)
   .use(store)

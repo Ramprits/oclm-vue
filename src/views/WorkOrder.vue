@@ -1,9 +1,20 @@
 <template>
-  <p>Work order</p>
+  <div v-if="loading">
+    Please await a moment
+  </div>
+  <OrderTable v-else :orders="workOrders"></OrderTable>
 </template>
 
 <script>
-export default {};
+import { mapGetters } from "vuex";
+import OrderTable from "@/components/WorkOrderTable.vue";
+export default {
+  components: { OrderTable },
+  mounted() {
+    return this.$store.dispatch("orders/fetchWorkOrders");
+  },
+  computed: { ...mapGetters("orders", ["workOrders", "loading"]) },
+};
 </script>
 
 <style></style>

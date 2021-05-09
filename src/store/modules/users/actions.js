@@ -49,6 +49,7 @@ export default {
   logout({ commit }) {
     localStorage.removeItem("@userInformation");
     localStorage.removeItem("@userTokenInformation");
+    router.push("/login");
     commit("logout");
   },
   loadUser({ commit }, payload) {

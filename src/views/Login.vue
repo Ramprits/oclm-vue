@@ -29,15 +29,16 @@
           <span class="subtitle is-spaced">Sign In</span>
           <h4 class="title is-size-3">Join our community</h4>
           <div class="mb-5">
-            <form @submit.prevent="onSubmit">
+            <Form @submit="onSubmit" :validation-schema="schema">
               <div class="field">
                 <div class="control has-icons-right">
-                  <input
+                  <Field
                     class="input"
                     type="text"
-                    v-model="identifier"
+                    name="identifier"
                     placeholder="name@email.com"
                   />
+                  <ErrorMessage class="has-text-danger" name="identifier" />
                   <span class="icon is-small is-right">
                     <svg
                       class="image is-24x24"
@@ -58,12 +59,13 @@
               </div>
               <div class="field">
                 <div class="control has-icons-right">
-                  <input
+                  <Field
                     class="input"
                     type="password"
-                    v-model="password"
+                    name="password"
                     placeholder="Enter your password"
                   />
+                  <ErrorMessage class="has-text-danger" name="password" />
                   <span class="icon is-small is-right">
                     <svg
                       class="image is-24x24"
@@ -105,7 +107,7 @@
                   </button>
                 </div>
               </div>
-            </form>
+            </Form>
             <p class="mb-5 has-text-centered">or continue with</p>
             <button
               class="mb-3 button is-dark is-outlined is-fullwidth"
@@ -140,18 +142,28 @@
 
 <script>
 import { mapGetters } from "vuex";
+import { Form, Field, ErrorMessage } from "vee-validate";
+import * as yup from "yup";
 export default {
+  components: { Form, Field, ErrorMessage },
   data() {
+    const schema = yup.object({
+      identifier: yup.string().required(),
+      password: yup
+        .string()
+        .required()
+        .min(8),
+    });
+
     return {
-      identifier: "ramprit",
-      password: "Ramprit@1234",
+      schema,
     };
   },
   methods: {
-    onSubmit() {
+    onSubmit(values) {
       this.$store.dispatch("auth/login", {
-        identifier: this.identifier,
-        password: this.password,
+        identifier: values.identifier,
+        password: values.password,
       });
     },
   },

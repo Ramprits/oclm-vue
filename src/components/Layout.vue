@@ -40,7 +40,12 @@
           </div>
           <div class="navbar-end">
             <div class="navbar-item">
-              <div class="buttons">
+              <div class="buttons" v-if="isAuthenticated">
+                <button class="button is-primary" @click.once="onLogout">
+                  Log out
+                </button>
+              </div>
+              <div class="buttons" v-else>
                 <router-link class="button is-primary is-outlined" to="/login"
                   >Log In</router-link
                 ><router-link class="button is-primary" to="/register"
@@ -109,7 +114,13 @@
               >
             </div>
           </nav>
-          <div class="mb-6 pt-5 has-border-top">
+
+          <div class="mb-6 pt-5 has-border-top" v-if="isAuthenticated">
+            <button class="button is-primary" @click.once="onLogout">
+              Log out
+            </button>
+          </div>
+          <div class="mb-6 pt-5 has-border-top" v-else>
             <router-link class="button is-primary is-outlined" to="/login"
               >Log In</router-link
             ><router-link class="button is-primary" to="/register"
@@ -136,7 +147,17 @@
 </template>
 
 <script>
-export default {};
+import { mapGetters } from "vuex";
+export default {
+  computed: {
+    ...mapGetters("auth", ["isAuthenticated"]),
+  },
+  methods: {
+    onLogout() {
+      this.$store.dispatch("auth/logout");
+    },
+  },
+};
 </script>
 
 <style></style>

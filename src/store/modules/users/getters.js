@@ -11,4 +11,7 @@ export default {
   loading(state) {
     return state.loading;
   },
+  token(state) {
+    return state.token;
+  },
 };
