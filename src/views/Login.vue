@@ -29,12 +29,17 @@
           <span class="subtitle is-spaced">Sign In</span>
           <h4 class="title is-size-3">Join our community</h4>
           <div class="mb-5">
-            <Form @submit="onSubmit" :validation-schema="schema">
+            <Form
+              @submit="onSubmit"
+              :validation-schema="schema"
+              v-slot="{ errors }"
+            >
               <div class="field">
                 <div class="control has-icons-right">
                   <Field
                     class="input"
                     type="text"
+                    :class="errors.identifier && 'is-danger'"
                     name="identifier"
                     placeholder="name@email.com"
                   />
@@ -62,6 +67,7 @@
                   <Field
                     class="input"
                     type="password"
+                    :class="errors.password && 'is-danger'"
                     name="password"
                     placeholder="Enter your password"
                   />
@@ -148,7 +154,9 @@ export default {
   components: { Form, Field, ErrorMessage },
   data() {
     const schema = yup.object({
-      identifier: yup.string().required(),
+      identifier: yup
+        .string()
+        .required("Please enter your username / email address"),
       password: yup
         .string()
         .required()
