@@ -4,9 +4,9 @@ import mutations from "./mutations.js";
 import getters from "./getters.js";
 
 export default {
-  namespaced: true,
-  state,
-  getters,
-  mutations,
-  actions,
+    namespaced: true,
+    state,
+    getters,
+    mutations,
+    actions,
 };

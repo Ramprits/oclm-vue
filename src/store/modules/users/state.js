@@ -1,7 +1,7 @@
 export default {
-  user: null,
-  isAuthenticated: false,
-  token: "",
-  loading: false,
-  errorMessage: "",
+    user: null,
+    isAuthenticated: false,
+    token: "",
+    loading: false,
+    errorMessage: "",
 };
