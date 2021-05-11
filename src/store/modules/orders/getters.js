@@ -1,6 +1,6 @@
 export default {
   workOrders(state) {
-    return state.workOrders;
+    return state.items;
   },
   loading(state) {
     return state.loading;

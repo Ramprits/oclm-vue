@@ -2,18 +2,21 @@
   <div v-if="loading">
     Please await a moment
   </div>
-  <OrderTable v-else :orders="workOrders"></OrderTable>
+  <OrderTable
+    v-else
+    :orders="workOrders"
+  />
 </template>
 
 <script>
 import { mapGetters } from "vuex";
 import OrderTable from "@/components/WorkOrderTable.vue";
 export default {
-  components: { OrderTable },
-  mounted() {
-    return this.$store.dispatch("orders/fetchWorkOrders");
-  },
-  computed: { ...mapGetters("orders", ["workOrders", "loading"]) },
+    components: { OrderTable },
+    computed: { ...mapGetters("orders", ["workOrders", "loading"]) },
+    mounted() {
+        return this.$store.dispatch("orders/getOrders");
+    }
 };
 </script>
 

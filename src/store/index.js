@@ -1,6 +1,6 @@
 import { createStore } from "vuex";
 import UserModule from "./modules/users/index.js";
-import WorkOrderModule from "./modules/work-order/index.js";
+import WorkOrderModule from "./modules/orders/index.js";
 
 export default createStore({
   state: {},

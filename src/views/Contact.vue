@@ -5,11 +5,11 @@
 <script>
 export default {
   name: "Test",
-  created() {},
+  props: {},
   data() {
     return {};
   },
-  props: {},
+  created() {},
   methods: {},
 };
 </script>

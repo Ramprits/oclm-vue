@@ -1,4 +1,4 @@
-import {createRouter, createWebHashHistory} from "vue-router";
+import { createRouter, createWebHashHistory } from "vue-router";
 import Login from "@/views/Login.vue";
 import Home from "@/views/Home.vue";
 import Layout from "@/components/Layout.vue";
@@ -9,14 +9,14 @@ const routes = [
     {
         path: "/login",
         name: "Login",
-        meta: {requiresUnAuth: true},
-        component: Login,
+        meta: { requiresUnAuth: true },
+        component: Login
     },
     {
         path: "/register",
         name: "Register",
-        meta: {requiresUnAuth: true},
-        component: Register,
+        meta: { requiresUnAuth: true },
+        component: Register
     },
     {
         path: "/",
@@ -27,55 +27,61 @@ const routes = [
             {
                 path: "/dashboard",
                 name: "Dashboard",
-                meta: {requiresAuth: true},
-                component: Home,
+                meta: { requiresAuth: true },
+                component: Home
             },
             {
                 path: "/work-orders",
                 name: "WorkOrder",
-                meta: {requiresAuth: true},
+                meta: { requiresAuth: true },
                 component: () =>
-                    import(/* webpackChunkName: "work-orders" */ "@/views/WorkOrder.vue"),
+                    import(
+                        /* webpackChunkName: "work-orders" */ "@/views/WorkOrder.vue"
+                    )
             },
             {
                 path: "/field-agent",
                 name: "FieldAgent",
-                meta: {requiresAuth: true},
+                meta: { requiresAuth: true },
                 component: () =>
                     import(
                         /* webpackChunkName: "field-agent" */ "@/views/FieldAgent.vue"
-                        ),
+                    )
             },
             {
                 path: "/report",
                 name: "Report",
-                meta: {requiresAuth: true},
+                meta: { requiresAuth: true },
                 component: () =>
-                    import(/* webpackChunkName: "report" */ "@/views/Report.vue"),
+                    import(
+                        /* webpackChunkName: "report" */ "@/views/Report.vue"
+                    )
             },
             {
                 path: "/profile",
                 name: "Profile",
-                meta: {requiresAuth: true},
+                meta: { requiresAuth: true },
                 component: () =>
-                    import(/* webpackChunkName: "profile" */ "@/views/Profile.vue"),
-            },
-        ],
-    },
+                    import(
+                        /* webpackChunkName: "profile" */ "@/views/Profile.vue"
+                    )
+            }
+        ]
+    }
 ];
 
 const router = createRouter({
     history: createWebHashHistory(process.env.BASE_URL),
-    routes,
+    routes
 });
 
 router.beforeEach((to, _, next) => {
     let authenticated = store.getters["auth/isAuthenticated"];
     if (to.meta.requiresAuth && !authenticated) {
-        next({name: "Login"});
+        next({ name: "Login" });
     }
     if (to.meta.requiresUnAuth && authenticated) {
-        next({name: "Dashboard"});
+        next({ name: "Dashboard" });
     } else {
         next();
     }

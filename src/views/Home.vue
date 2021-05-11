@@ -14,13 +14,21 @@
         </p>
       </div>
       <div class="buttons">
-        <a class="button is-primary" href="#">Check Now</a
-        ><a class="button is-dark is-outlined" href="#">Documentation</a>
+        <a
+          class="button is-primary"
+          href="#"
+        >Check Now</a><a
+          class="button is-dark is-outlined"
+          href="#"
+        >Documentation</a>
       </div>
     </div>
     <div class="column is-6">
       <div>
-        <img src="metis-assets/illustrations/work-tv.png" alt="" />
+        <img
+          src="metis-assets/illustrations/work-tv.png"
+          alt=""
+        >
       </div>
     </div>
   </div>

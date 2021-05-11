@@ -7,7 +7,10 @@
       <th>Status</th>
     </thead>
     <tbody>
-      <tr v-for="o in orders" :key="o.id">
+      <tr
+        v-for="o in orders"
+        :key="o.id"
+      >
         <td>{{ o.customer.name }}</td>
         <td>{{ o.description.substr(0, 80) }}</td>
         <td>{{ o.category.name }}</td>
@@ -19,7 +22,7 @@
 
 <script>
 export default {
-  props: ["orders"],
+    props: ["orders"]
 };
 </script>
 
